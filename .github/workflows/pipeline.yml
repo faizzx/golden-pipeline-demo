@@ -38,6 +38,19 @@ jobs:
           path: bandit-report.json
       # --- NEW STEP ENDS HERE ---
 
+      # --- NEW STEP: Scan Dependencies with Trivy ---
+      - name: Run Trivy Vulnerability Scanner (FS)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '0' # Keep 0 for now so we can see the results without breaking the build
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+
       - name: Install App Requirements
         run: pip install -r requirements.txt
 
