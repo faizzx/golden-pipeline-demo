@@ -1,26 +1,27 @@
-# The Golden Pipeline Project
+# The Golden Pipeline Project:
 
-Goal: Create a secure CI/CD pipeline that detects vulnerabilities before deployment.
+### Goal:
+- Create a secure CI/CD pipeline that detects vulnerabilities before deployment.
 
-Tools Used:
+### Tools Used:
 
 - GitHub Actions: CI/CD Orchestration
-
 - Bandit: SAST (Static Application Security Testing) for Python
-
 - Trivy: SCA (Software Composition Analysis) and Container Scanning
-
 - Docker: Containerization
 
 
-How it works:
+### How it works:
 
 - Developer pushes code.
-
 - Bandit scans source code for secrets/bad patterns.
-
 - Trivy scans requirements.txt for known CVEs.
-
 - Docker image is built.
-
 - Trivy scans the final image for OS vulnerabilities.
+
+
+
+### Vulnerability Detection:
+- An example showing the pipeline automatically blocking high-severity CVEs in dependencies.
+
+![img.png](img.png)
