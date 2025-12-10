@@ -4,7 +4,10 @@ import os
 app = Flask(__name__)
 
 # VULNERABILITY 1: Hardcoded API Key (SAST scanners should catch this)
-API_KEY = "12345-abcde-secret-key-do-not-share"
+# API_KEY = "12345-abcde-secret-key-do-not-share"
+
+API_KEY = os.getenv('API_KEY', 'default-key-for-dev')
+
 
 @app.route('/')
 def home():
