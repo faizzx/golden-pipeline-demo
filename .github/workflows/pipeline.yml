@@ -56,3 +56,15 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t golden-app .
+          
+        # --- NEW STEP: Scan the Container Image ---
+      - name: Run Trivy Vulnerability Scanner (Image)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'image'
+          image-ref: 'golden-app:${{ github.sha }}' # Scanning the image we just built
+          format: 'table'
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
